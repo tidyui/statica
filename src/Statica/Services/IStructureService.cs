@@ -21,10 +21,10 @@ namespace Statica.Services
         StaticSitemap Sitemap { get; }
 
         /// <summary>
-        /// Gets the content for the page with the given slug.
+        /// Gets the page with the given slug.
         /// </summary>
         /// <param name="slug">The slug</param>
-        /// <returns>The content</returns>
-        Task<string> GetPageContentAsync(string slug);
+        /// <returns>The page</returns>
+        Task<StaticPageModel> GetPageAsync(string slug);
     }
 }

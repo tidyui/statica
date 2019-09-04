@@ -2,22 +2,16 @@
 @{
     var structure = Statica.GetStructure("blog");
     var slug = (string)RouteData.Values["slug"];
-
-    var content = "";
-
-    if (!string.IsNullOrWhiteSpace(slug))
-    {
-        try
-        {
-            content = await structure.GetPageContentAsync(slug);
-        }
-        catch {}
-    }
+    var content = await structure.GetPageAsync(slug);
 }
 
 @if (!string.IsNullOrWhiteSpace(slug))
 {
-    @Html.Raw(content)
+    <p>
+        Created: <strong>@content.Created.ToString()</strong>
+        Last Modified: <strong>@content.LastModified.ToString()</strong>
+    </p>
+    @Html.Raw(content.Body)
 }
 else
 {

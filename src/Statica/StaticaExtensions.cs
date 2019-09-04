@@ -9,6 +9,7 @@
  */
 
 using Microsoft.Extensions.DependencyInjection;
+using Piranha;
 using Statica.Models;
 using Statica.Services;
 
@@ -23,6 +24,9 @@ public static class StaticaExtensions
     public static IServiceCollection AddStatica(this IServiceCollection services,
         params StaticStructure[] structures)
     {
+        // Add the statica module
+        App.Modules.Register<Statica.Module>();
+
         return services.AddSingleton<IStaticaService>(new StaticaService(structures));
     }
 }

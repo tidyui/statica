@@ -8,6 +8,7 @@
  *
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace Statica.Models
@@ -41,6 +42,16 @@ namespace Statica.Models
         {
             get { return "/" + (!string.IsNullOrWhiteSpace(Redirect) ? Redirect : Slug); }
         }
+
+        /// <summary>
+        /// Gets/sets the created date.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Gets/sets the last modification date.
+        /// </summary>
+        public DateTime LastModified { get; set; }
 
         /// <summary>
         /// Gets/sets the available subitems.

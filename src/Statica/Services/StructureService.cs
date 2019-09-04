@@ -67,22 +67,37 @@ namespace Statica.Services
         }
 
         /// <summary>
-        /// Gets the content for the page with the given slug.
+        /// Gets the page with the given slug.
         /// </summary>
         /// <param name="slug">The slug</param>
-        /// <returns>The content</returns>
-        public async Task<string> GetPageContentAsync(string slug)
+        /// <returns>The page</returns>
+        public async Task<StaticPageModel> GetPageAsync(string slug)
         {
-            if (Sitemap.Routes.TryGetValue(slug, out var page))
+            if (!string.IsNullOrWhiteSpace(slug))
             {
-                var file = new FileInfo(page.Path);
-
-                using (var sr = new StreamReader(file.OpenRead()))
+                if (Sitemap.Routes.TryGetValue(slug, out var page))
                 {
-                    return App.Markdown.Transform(await sr.ReadToEndAsync());
+                    var model = new StaticPageModel
+                    {
+                        Title = page.Title,
+                        Slug = page.Slug,
+                        Path = page.Path,
+                        Redirect = page.Redirect,
+                        Created = page.Created,
+                        LastModified = page.LastModified
+                    };
+
+                    var file = new FileInfo(page.Path);
+
+                    using (var sr = new StreamReader(file.OpenRead()))
+                    {
+                        model.Markdown = await sr.ReadToEndAsync();
+                        model.Body = App.Markdown.Transform(model.Markdown);
+                    }
+                    return model;
                 }
             }
-            throw new FileNotFoundException();
+            return null;
         }
 
         /// <summary>
@@ -104,7 +119,9 @@ namespace Statica.Services
                     {
                         Title = Utils.GenerateTitle(info),
                         Slug = prefix + Utils.GenerateSlug(info),
-                        Path = info.FullName
+                        Path = info.FullName,
+                        Created = info.CreationTime,
+                        LastModified = info.LastWriteTime
                     };
 
                     // Check if this is a directory
@@ -118,6 +135,8 @@ namespace Statica.Services
                         if (index != null)
                         {
                             item.Path = index.FullName;
+                            item.Created = index.CreationTime;
+                            item.LastModified = index.LastWriteTime;
                         }
                         else if (item.Items.Count > 0)
                         {
