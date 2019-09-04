@@ -111,7 +111,7 @@ namespace Statica.Services
         {
             var items = new List<StaticPage>();
 
-            foreach (var info in new DirectoryInfo(path).GetFileSystemInfos().OrderBy(f => f.Name))
+            foreach (var info in GetDirectoryItems(path))
             {
                 if (info.Name != "Index.md")
                 {
@@ -154,6 +154,23 @@ namespace Statica.Services
                 }
             }
             return items;
+        }
+
+        /// <summary>
+        /// Gets the items in the specified directory that should
+        /// be included in the sitemap.
+        /// </summary>
+        /// <param name="path">The path</param>
+        /// <returns>The items</returns>
+        private IEnumerable<FileSystemInfo> GetDirectoryItems(string path)
+        {
+            var dir = new DirectoryInfo(path);
+            var items = new List<FileSystemInfo>();
+
+            items.AddRange(dir.GetDirectories().Where(d => !d.Name.StartsWith("_")).ToList());
+            items.AddRange(dir.GetFiles("*.md"));
+
+            return items.OrderBy(i => i.Name).ToList();
         }
     }
 }
