@@ -1,0 +1,26 @@
+@page "{**slug}"
+@{
+    var structure = Statica.GetStructure("blog");
+    var slug = (string)RouteData.Values["slug"];
+
+    var content = "";
+
+    if (!string.IsNullOrWhiteSpace(slug))
+    {
+        try
+        {
+            content = await structure.GetPageContentAsync(slug);
+        }
+        catch {}
+    }
+}
+
+@if (!string.IsNullOrWhiteSpace(slug))
+{
+    @Html.Raw(content)
+}
+else
+{
+    <h1>Welcome to Statica</h1>
+    <p>This is the intro text for the startpage.</p>
+}

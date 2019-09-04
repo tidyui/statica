@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Statica.Models
 {
-    public class PageStructureItem
+    public class StaticPage
     {
         /// <summary>
         /// Gets/sets the navigation title.
@@ -35,8 +35,16 @@ namespace Statica.Models
         public string Redirect { get; set; }
 
         /// <summary>
+        /// Gets the permalink to the page.
+        /// </summary>
+        public string Permalink
+        {
+            get { return "/" + (!string.IsNullOrWhiteSpace(Redirect) ? Redirect : Slug); }
+        }
+
+        /// <summary>
         /// Gets/sets the available subitems.
         /// </summary>
-        public IList<PageStructureItem> Items { get; set; } = new List<PageStructureItem>();
+        public IList<StaticPage> Items { get; set; } = new List<StaticPage>();
     }
 }

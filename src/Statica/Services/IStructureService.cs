@@ -13,12 +13,12 @@ using Statica.Models;
 
 namespace Statica.Services
 {
-    public interface IPageService
+    public interface IStructureService
     {
         /// <summary>
-        /// Gets the current page structure.
+        /// Gets the current sitemap.
         /// </summary>
-        PageStructure PageStructure { get; }
+        StaticSitemap Sitemap { get; }
 
         /// <summary>
         /// Gets the content for the page with the given slug.

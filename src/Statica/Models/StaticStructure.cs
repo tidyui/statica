@@ -12,16 +12,21 @@ using System.Collections.Generic;
 
 namespace Statica.Models
 {
-    public class PageStructure
+    public class StaticStructure
     {
         /// <summary>
-        /// Gets/sets the available items.
+        /// The unique structure id.
         /// </summary>
-        public IList<PageStructureItem> Items { get; set; } = new List<PageStructureItem>();
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets/sets the available routes.
+        /// Gets/sets the base slug.
         /// </summary>
-        public IDictionary<string, PageStructureItem> Routes { get; set; } = new Dictionary<string, PageStructureItem>();
+        public string BaseSlug { get; set; }
+
+        /// <summary>
+        /// Gets/sets the data path for the structure.
+        /// </summary>
+        public string DataPath { get; set; }
     }
 }
