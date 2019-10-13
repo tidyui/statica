@@ -28,5 +28,10 @@ namespace Statica.Models
         /// Gets/sets the data path for the structure.
         /// </summary>
         public string DataPath { get; set; }
+
+        /// <summary>
+        /// If assets should be used for the structure.
+        /// </summary>
+        public bool UseAssets { get; set; } = false;
     }
 }
