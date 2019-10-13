@@ -5,6 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Piranha" Version="7.0.0" />
+    <PackageReference Include="Piranha" Version="7.0.3" />
   </ItemGroup>
 </Project>

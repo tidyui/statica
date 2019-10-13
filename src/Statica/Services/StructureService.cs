@@ -75,7 +75,9 @@ namespace Statica.Services
         {
             if (!string.IsNullOrWhiteSpace(slug))
             {
-                if (Sitemap.Routes.TryGetValue(slug, out var page))
+                var key = _baseSlug + slug;
+
+                if (Sitemap.Routes.TryGetValue(key, out var page))
                 {
                     var model = new StaticPageModel
                     {
