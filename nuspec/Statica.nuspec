@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Statica</id>
+    <title>Statica</title>
+    <version>0.1.0</version>
+    <authors>Håkan Edling</authors>
+    <owners>Håkan Edling</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Piranha Module for generating a partial page structure from local markdown files.</description>
+    <copyright>Copyright 2019 (c) Håkan Edling</copyright>
+    <tags>aspnetcore netstandard</tags>
+    <license type="expression">MIT</license>
+    <projectUrl>http://github.com/tidyui/statica</projectUrl>
+    <iconUrl>http://piranhacms.org/assets/icon-statica.png</iconUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.AspNetCore" version="2.2.0" />
+        <dependency id="Microsoft.AspNetCore.StaticFiles" version="2.2.0" />
+        <dependency id="Piranha" version="[7.0.3,8.0.0)" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\Statica\bin\Release\netstandard2.0\Statica.dll" target="lib\netstandard2.0\Statica.dll" />
+  </files>
+</package>
