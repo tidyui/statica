@@ -47,4 +47,4 @@ Adding statica to your application is easy. The only important this is that `Use
         ...
     }
 
-If `UseAssets` is set to `true`, Statica will **assume** that you have the folder `_assets` in your DataPath. If will be exposed in your application on `BaseSlug/_assets`.
+If `UseAssets` is set to `true`, Statica will **assume** that you have the folder `_assets` in your DataPath. Your assets will be exposed in your application on `BaseSlug/_assets`.
