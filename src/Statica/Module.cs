@@ -22,7 +22,7 @@ namespace Statica
         /// <summary>
         /// Gets the Name
         /// </summary>
-        public string Name => "TidyUI.Statica";
+        public string Name => "Statica";
 
         /// <summary>
         /// Gets the Version
