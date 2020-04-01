@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using Piranha;
 using Statica.Models;
 using Statica.Services;
@@ -38,7 +39,7 @@ public static class StaticaExtensions
         return services.AddSingleton<IStaticaService>(new StaticaService(structures));
     }
 
-    public static IApplicationBuilder UseStatica(this IApplicationBuilder builder, IHostingEnvironment env)
+    public static IApplicationBuilder UseStatica(this IApplicationBuilder builder, IWebHostEnvironment env)
     {
         foreach (var structure in _structures)
         {

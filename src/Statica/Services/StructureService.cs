@@ -89,12 +89,15 @@ namespace Statica.Services
                         LastModified = page.LastModified
                     };
 
-                    var file = new FileInfo(page.Path);
-
-                    using (var sr = new StreamReader(file.OpenRead()))
+                    if (string.IsNullOrWhiteSpace(model.Redirect))
                     {
-                        model.Markdown = await sr.ReadToEndAsync();
-                        model.Body = App.Markdown.Transform(model.Markdown);
+                        var file = new FileInfo(page.Path);
+
+                        using (var sr = new StreamReader(file.OpenRead()))
+                        {
+                            model.Markdown = await sr.ReadToEndAsync();
+                            model.Body = App.Markdown.Transform(model.Markdown);
+                        }
                     }
                     return model;
                 }
