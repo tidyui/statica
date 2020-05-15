@@ -17,4 +17,4 @@ if [ ! -d "$OUTPUT_DIR" ]; then
 fi
 
 # Create all NuGet packages
-nuget pack nuspec/Statica.nuspec -OutputDirectory $OUTPUT_DIR
+dotnet pack src/Statica/Statica.csproj --no-build -c Release -o $OUTPUT_DIR
