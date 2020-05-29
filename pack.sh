@@ -6,6 +6,7 @@ OUTPUT_DIR=$SCRIPT_DIR/artifacts
 
 # Clean and build in release
 cd src/Statica
+dotnet restore
 dotnet clean
 dotnet build -c Release
 cd ..
