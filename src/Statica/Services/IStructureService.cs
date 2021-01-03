@@ -21,6 +21,11 @@ namespace Statica.Services
         string Id { get; }
 
         /// <summary>
+        /// Gets the optional title.
+        /// </summary>
+        string Title { get; }
+
+        /// <summary>
         /// Gets the current sitemap.
         /// </summary>
         StaticSitemap Sitemap { get; }

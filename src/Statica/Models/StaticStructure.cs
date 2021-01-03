@@ -13,9 +13,14 @@ namespace Statica.Models
     public class StaticStructure
     {
         /// <summary>
-        /// The unique structure id.
+        /// Gets/sets the unique structure id.
         /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets/sets the optional title.
+        /// </summary>
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets/sets the base slug.

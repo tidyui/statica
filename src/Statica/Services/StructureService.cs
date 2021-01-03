@@ -22,6 +22,9 @@ namespace Statica.Services
         // The unique id
         private readonly string _id;
 
+        // The optional title
+        private readonly string _title;
+
         // The base slug for the structure
         private readonly string _baseSlug;
 
@@ -40,11 +43,13 @@ namespace Statica.Services
         /// <param name="id">The unique id</param>
         /// <param name="baseSlug">The base slug</param>
         /// <param name="dataPath">The data path</param>
-        public StructureService(string id, string baseSlug, string dataPath)
+        /// <param name="title">The optional title</param>
+        public StructureService(string id, string baseSlug, string dataPath, string title = null)
         {
             _id = id;
             _baseSlug = baseSlug;
             _dataPath = dataPath;
+            _title = title;
 
             if (!string.IsNullOrWhiteSpace(_baseSlug) && !_baseSlug.EndsWith("/"))
                 _baseSlug += "/";
@@ -54,6 +59,11 @@ namespace Statica.Services
         /// Gets the unique structure id.
         /// </summary>
         public string Id => _id;
+
+        /// <summary>
+        /// Gets the optional title.
+        /// </summary>
+        public string Title => _title;
 
         /// <summary>
         /// Gets the current page structure.
