@@ -28,7 +28,8 @@ namespace Statica.Services
             foreach (var structure in structures)
             {
                 _structures[structure.Id] =
-                    new StructureService(structure.Id, structure.BaseSlug, structure.DataPath);
+                    new StructureService(structure.Id, structure.BaseSlug,
+                        structure.DataPath, structure.Title);
             }
         }
 
