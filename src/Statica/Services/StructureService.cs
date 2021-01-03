@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Håkan Edling
+ * Copyright (c) 2019-2021 Håkan Edling
  *
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
@@ -19,7 +19,10 @@ namespace Statica.Services
 {
     public class StructureService : IStructureService
     {
-        // The bas slug for the structure
+        // The unique id
+        private readonly string _id;
+
+        // The base slug for the structure
         private readonly string _baseSlug;
 
         /// The base path for the structure.
@@ -31,14 +34,26 @@ namespace Statica.Services
         /// Mutex for initialization.
         private object mutex = new object();
 
-        public StructureService(string baseSlug, string dataPath)
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="id">The unique id</param>
+        /// <param name="baseSlug">The base slug</param>
+        /// <param name="dataPath">The data path</param>
+        public StructureService(string id, string baseSlug, string dataPath)
         {
+            _id = id;
             _baseSlug = baseSlug;
             _dataPath = dataPath;
 
             if (!string.IsNullOrWhiteSpace(_baseSlug) && !_baseSlug.EndsWith("/"))
                 _baseSlug += "/";
         }
+
+        /// <summary>
+        /// Gets the unique structure id.
+        /// </summary>
+        public string Id => _id;
 
         /// <summary>
         /// Gets the current page structure.
