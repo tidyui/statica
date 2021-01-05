@@ -36,5 +36,10 @@ namespace Statica.Services
         /// <param name="slug">The slug</param>
         /// <returns>The page</returns>
         Task<StaticPageModel> GetPageAsync(string slug);
+
+        /// <summary>
+        /// Reloads the structure information.
+        /// </summary>
+        Task Reload();
     }
 }

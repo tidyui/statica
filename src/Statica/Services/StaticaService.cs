@@ -9,6 +9,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Statica.Models;
 
 namespace Statica.Services
@@ -54,6 +55,31 @@ namespace Statica.Services
         public IEnumerable<IStructureService> GetStructures()
         {
             return _structures.Values;
+        }
+
+        /// <summary>
+        /// Reloads all of the structures available of
+        /// the structure identitifed by the given id.
+        /// </summary>
+        /// <param name="id">The optional structure id</param>
+        public async Task Reload(string id = null)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var structure = GetStructure(id);
+
+                if (structure != null)
+                {
+                    await structure.Reload();
+                }
+            }
+            else
+            {
+                foreach (var structure in GetStructures())
+                {
+                    await structure.Reload();
+                }
+            }
         }
     }
 }

@@ -131,6 +131,17 @@ namespace Statica.Services
         }
 
         /// <summary>
+        /// Reloads the structure information.
+        /// </summary>
+        public Task Reload()
+        {
+            return Task.Run(() =>
+            {
+                _structure = null;
+            });
+        }
+
+        /// <summary>
         /// Gets the page structure.
         /// </summary>
         /// <param name="sitemap"></param>

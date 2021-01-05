@@ -9,6 +9,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Statica.Services
 {
@@ -26,5 +27,12 @@ namespace Statica.Services
         /// </summary>
         /// <returns>A collection of structures</returns>
         IEnumerable<IStructureService> GetStructures();
+
+        /// <summary>
+        /// Reloads all of the structures available of
+        /// the structure identitifed by the given id.
+        /// </summary>
+        /// <param name="id">The optional structure id</param>
+        Task Reload(string id = null);
     }
 }
