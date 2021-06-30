@@ -9,13 +9,20 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Statica
 {
     public static class Utils
     {
+        /// <summary>
+        /// Register provider for ISO-8859-8 encoding
+        /// </summary>
+        static Utils() => Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
         /// <summary>
         /// Generates a title for the given filesystem info.
         /// </summary>
@@ -44,22 +51,12 @@ namespace Statica
             // Trim & make lower case
             var slug = str.Trim().ToLower();
 
-            // Convert culture specific characters
-            slug = slug
-                .Replace("å", "a")
-                .Replace("ä", "a")
-                .Replace("á", "a")
-                .Replace("à", "a")
-                .Replace("ö", "o")
-                .Replace("ó", "o")
-                .Replace("ò", "o")
-                .Replace("é", "e")
-                .Replace("è", "e")
-                .Replace("í", "i")
-                .Replace("ì", "i");
+            // "Latinize" culture-specific characters
+            var tempBytes = Encoding.GetEncoding("ISO-8859-8").GetBytes(slug);
+            slug = Encoding.UTF8.GetString(tempBytes);
 
             // Remove special characters
-            slug = Regex.Replace(slug, @"[^a-z0-9-/ ]", "").Replace("--", "-");
+            slug = Regex.Replace(slug, @"[^a-z0-9-/ ]", "");
 
             // Remove whitespaces
             slug = Regex.Replace(slug.Replace("-", " "), @"\s+", " ").Replace(" ", "-");
