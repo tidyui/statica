@@ -28,7 +28,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
-    <PackageReference Include="Piranha" Version="8.0.0" />
+    <PackageReference Include="Piranha" Version="9.2.0" />
   </ItemGroup>
 
   <ItemGroup>
