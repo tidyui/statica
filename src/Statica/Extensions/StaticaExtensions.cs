@@ -8,11 +8,11 @@
  *
  */
 
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
 using Piranha;
 using Statica.Models;
 using Statica.Services;
@@ -45,9 +45,16 @@ public static class StaticaExtensions
         {
             if (structure.UseAssets)
             {
+                var path = $"{ env.ContentRootPath }/{ structure.DataPath }/_assets";
+
+                // Make sure that the path exists
+                if (!Directory.Exists(path))
+                    continue;
+
+                // Add the static files provider
                 builder.UseStaticFiles(new StaticFileOptions
                 {
-                    FileProvider = new PhysicalFileProvider($"{ env.ContentRootPath }/{ structure.DataPath }/_assets"),
+                    FileProvider = new PhysicalFileProvider(path),
                     RequestPath = $"/{ structure.BaseSlug }/_assets"
                 });
 
